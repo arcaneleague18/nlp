@@ -1,56 +1,29 @@
-# Minimal Shift-Reduce Parser
+import nltk
+from nltk import CFG
+from nltk.parse import ShiftReduceParser
 
-# Grammar rules (Right side -> Left side)
-grammar = {
-    ("det", "N"): "NP",
-    ("V", "NP"): "VP",
-    ("NP", "VP"): "S"
-}
+g = CFG.fromstring("""
+S -> NP VP
+NP -> DT NN
+VP -> V NP
+DT -> 'the'
+NN -> 'boy' | 'ball'
+V -> 'hit'
+""")
 
-# Lexicon (word -> token)
-lexicon = {
-    "the": "det",
-    "a": "det",
-    "dog": "N",
-    "cat": "N",
-    "boy": "N",
-    "mouse": "N",
-    "sees": "V",
-    "chases": "V"
-}
+p = ShiftReduceParser(g)
+s = "the boy hit the ball".split()
 
-sentence = input("Enter sentence: ").lower().split()
+print("STACK\t\tINPUT\t\tACTION")
+stk = []
+inp = s[:]
 
-# Convert words to tokens
-tokens = [lexicon[word] for word in sentence]
+for w in s:
+    stk.append(w)
+    inp.pop(0)
+    print(stk, "\t", inp, "\tSHIFT")
 
-stack = []
-buffer = tokens.copy()
+print(stk, "\t", inp, "\tREDUCE\n")
 
-print("\nShift-Reduce Parsing Steps:\n")
-
-while buffer or len(stack) > 1:
-    
-    # SHIFT
-    if buffer:
-        stack.append(buffer.pop(0))
-        print("Shift → Stack:", stack)
-    
-    # Try REDUCE
-    reduced = True
-    while reduced:
-        reduced = False
-        for rhs, lhs in grammar.items():
-            if tuple(stack[-len(rhs):]) == rhs:
-                stack = stack[:-len(rhs)]
-                stack.append(lhs)
-                print("Reduce", rhs, "→", lhs)
-                print("Stack:", stack)
-                reduced = True
-                break
-
-# Final result
-if stack == ["S"]:
-    print("\nSentence Accepted")
-else:
-    print("\nSentence Rejected")
+for t in p.parse(s):
+    t.pretty_print()
