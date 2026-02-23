@@ -1,20 +1,23 @@
 import nltk
 from nltk import CFG
-from nltk.parse import ChartParser
 
-# Define grammar
 grammar = CFG.fromstring("""
-S  -> NP VP
-NP -> Det N
-VP -> V NP
-Det -> 'the' | 'a'
-N -> 'dog' | 'cat' | 'boy'
-V -> 'chases' | 'sees'
+  S -> NP VP
+  NP -> Det N
+  VP -> V NP | V NP PP
+  PP -> P NP
+  Det -> 'the' | 'a'
+  N -> 'dog' | 'cat' | 'park'
+  V -> 'chased' | 'saw'
+  P -> 'in' | 'with'
 """)
 
-parser = ChartParser(grammar)
+parser = nltk.ChartParser(grammar)
 
-sentence = input("Enter sentence: ").lower().split()
+text = input("Enter sentence: ").lower()
+
+sentence = text.split()
 
 for tree in parser.parse(sentence):
+    print(tree)
     tree.pretty_print()
