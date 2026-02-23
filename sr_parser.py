@@ -1,29 +1,36 @@
-import nltk
-from nltk import CFG
-from nltk.parse import ShiftReduceParser
+# Grammar
+productions = {
+    "S": [["S", "+", "S"], ["id"]]
+}
 
-g = CFG.fromstring("""
-S -> NP VP
-NP -> DT NN
-VP -> V NP
-DT -> 'the'
-NN -> 'boy' | 'ball'
-V -> 'hit'
-""")
-
-p = ShiftReduceParser(g)
-s = "the boy hit the ball".split()
+# Input string
+input_string = ["id", "+", "id"]
+stack = []
 
 print("STACK\t\tINPUT\t\tACTION")
-stk = []
-inp = s[:]
 
-for w in s:
-    stk.append(w)
-    inp.pop(0)
-    print(stk, "\t", inp, "\tSHIFT")
+while True:
+    # Shift if input remains
+    if input_string:
+        stack.append(input_string.pop(0))
+        print(stack, "\t", input_string, "\t Shift")
 
-print(stk, "\t", inp, "\tREDUCE\n")
+    # Try Reduce
+    reduced = True
+    while reduced:
+        reduced = False
+        for head, bodies in productions.items():
+            for body in bodies:
+                if stack[-len(body):] == body:
+                    stack = stack[:-len(body)]
+                    stack.append(head)
+                    print(stack, "\t\t", input_string, "\t\t Reduce:", head, "->", body)
+                    reduced = True
+                    break
+            if reduced:
+                break
 
-for t in p.parse(s):
-    t.pretty_print()
+    # Accept condition
+    if stack == ["S"] and not input_string:
+        print("\nString Accepted!")
+        break
