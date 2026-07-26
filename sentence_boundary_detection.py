@@ -6,11 +6,11 @@ from sklearn.linear_model import LogisticRegression
 train_words = ["India.", "country.", "Dr.", "Mr."]
 labels = [1, 1, 0, 0]   # 1 = boundary, 0 = not boundary
 
-# Convert to features
+# Convert to features (character n-grams)
 vectorizer = CountVectorizer(analyzer='char', ngram_range=(1,2))
 X = vectorizer.fit_transform(train_words)
 
-# Train model
+# Train logistic regression model
 model = LogisticRegression()
 model.fit(X, labels)
 
@@ -23,8 +23,23 @@ words = re.findall(r'\w+\.', text)
 X_test = vectorizer.transform(words)
 predictions = model.predict(X_test)
 
-print("Predictions",predictions)
-print("Words",words)
+print("Predictions", predictions)
+print("Words", words)
 # Print results
 for w, p in zip(words, predictions):
     print(w, "-> Sentence Boundary" if p == 1 else "-> Not Boundary")
+
+def test_sentence_boundary():
+    test_cases = [
+        ("India.", 1),
+        ("Dr.", 0),
+        ("country.", 1),
+        ("Mr.", 0)
+    ]
+    for w, expected in test_cases:
+        X_ = vectorizer.transform([w])
+        pred = model.predict(X_)[0]
+        assert pred == expected
+    print("All sentence boundary detection tests passed.")
+
+test_sentence_boundary()
