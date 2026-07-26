@@ -12,13 +12,18 @@ verbs = [
 
 aux_verbs = ["is", "are", "was", "were"]
 
-
 # -------------------------------
 # Base Form Function
 # -------------------------------
 def get_base(word):
+    """
+    Get the base form of a verb (very simplified for demo purposes).
+    Args:
+        word (str): Inflected verb.
+    Returns:
+        str: Base form of the verb.
+    """
     word = word.lower()
-
     if word.endswith("ing"):
         return word[:-3]
     elif word.endswith("ses"):   # must come before 'es'
@@ -32,20 +37,23 @@ def get_base(word):
     else:
         return word
 
-
 # -------------------------------
 # Predicate Argument Function
 # -------------------------------
 def predicate_argument(sentence):
+    """
+    Extracts subject, predicate, and object from a simple English sentence.
+    Args:
+        sentence (str): Input sentence.
+    Prints:
+        The agent (subject), predicate (verb), and theme (object).
+    """
     words = sentence.lower().split()
-
     subject = "none"
     predicate = "none"
     obj = "none"
-
     for i, word in enumerate(words):
         w = word.lower()
-
         # check auxiliary separately
         if w in aux_verbs:
             if i < len(words) - 1:
@@ -54,31 +62,24 @@ def predicate_argument(sentence):
             else:
                 predicate = word
                 verb_index = i
-
         # check main verb
         elif w in verbs or get_base(w) in verbs:
             predicate = word
             verb_index = i
-
         else:
             continue
-
         # subject
         if i > 0:
             subject = " ".join(words[:i])
-
         # object
         if verb_index < len(words) - 1:
             obj = " ".join(words[verb_index + 1:])
-
         break
-
     print("Sentence:", sentence)
     print("Predicate:", predicate)
     print("Agent (Subject):", subject)
     print("Theme (Object):", obj)
     print("-" * 40)
-
 
 # -------------------------------
 # Test Examples
@@ -87,3 +88,15 @@ predicate_argument("Ram is eating an apple")
 predicate_argument("The boy played football")
 predicate_argument("She likes ice cream")
 predicate_argument("Birds fly")
+
+def test_predicate_argument():
+    """
+    Test cases for predicate_argument function.
+    """
+    print("Testing predicate_argument:\n")
+    predicate_argument("Cats eat fish")
+    predicate_argument("He was playing cricket yesterday")
+    predicate_argument("Birds are flying in the sky")
+    print("Predicate argument tests complete.\n")
+
+test_predicate_argument()
