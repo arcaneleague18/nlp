@@ -40,6 +40,8 @@ def test_porter_stem():
     assert porter_stem("studies") == "stud"
     assert porter_stem("agreed") == "agre"
     assert porter_stem("quickly") == "quick"
+    assert porter_stem("pocesses") == "pocess"  # Added test for typo word
     print("All porter_stem tests passed.")
 
-test_porter_stem()
+if __name__ == "__main__":
+    test_porter_stem()

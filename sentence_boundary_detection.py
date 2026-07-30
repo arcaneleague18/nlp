@@ -2,6 +2,10 @@ import re
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 
+"""
+Trains a simple sentence boundary detector based on the context (word before the period).
+"""
+
 # Training examples (word before period)
 train_words = ["India.", "country.", "Dr.", "Mr."]
 labels = [1, 1, 0, 0]   # 1 = boundary, 0 = not boundary
@@ -39,7 +43,8 @@ def test_sentence_boundary():
     for w, expected in test_cases:
         X_ = vectorizer.transform([w])
         pred = model.predict(X_)[0]
-        assert pred == expected
+        assert pred == expected, f"Incorrect prediction for {w}: got {pred}, expected {expected}"
     print("All sentence boundary detection tests passed.")
 
-test_sentence_boundary()
+if __name__ == "__main__":
+    test_sentence_boundary()

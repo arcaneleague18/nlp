@@ -1,6 +1,10 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
+"""
+A simple supervised WSD example using Naive Bayes and manually labeled data.
+"""
+
 # Training data (manually labeled)
 sentences = [
     "He deposited money in the bank",
@@ -25,10 +29,11 @@ model = MultinomialNB()
 model.fit(X, labels)
 
 # Test
-test_sentence = ["I went to the bank to get money"]
-X_test = vectorizer.transform(test_sentence)
+if __name__ == "__main__":
+    test_sentence = ["I went to the bank to get money"]
+    X_test = vectorizer.transform(test_sentence)
 
-prediction = model.predict(X_test)
+    prediction = model.predict(X_test)
 
-print("Sentence:", test_sentence[0])
-print("Predicted Sense:", prediction[0])
+    print("Sentence:", test_sentence[0])
+    print("Predicted Sense:", prediction[0])
