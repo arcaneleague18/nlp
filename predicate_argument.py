@@ -84,19 +84,20 @@ def predicate_argument(sentence):
 # -------------------------------
 # Test Examples
 # -------------------------------
-predicate_argument("Ram is eating an apple")
-predicate_argument("The boy played football")
-predicate_argument("She likes ice cream")
-predicate_argument("Birds fly")
+if __name__ == "__main__":
+    predicate_argument("Ram is eating an apple")
+    predicate_argument("The boy played football")
+    predicate_argument("She likes ice cream")
+    predicate_argument("Birds fly")
 
-def test_predicate_argument():
-    """
-    Test cases for predicate_argument function.
-    """
-    print("Testing predicate_argument:\n")
-    predicate_argument("Cats eat fish")
-    predicate_argument("He was playing cricket yesterday")
-    predicate_argument("Birds are flying in the sky")
-    print("Predicate argument tests complete.\n")
+    def test_predicate_argument():
+        """
+        Test cases for predicate_argument function.
+        """
+        print("Testing predicate_argument:\n")
+        predicate_argument("Cats eat fish")
+        predicate_argument("He was playing cricket yesterday")
+        predicate_argument("Birds are flying in the sky")
+        print("Predicate argument tests complete.\n")
 
-test_predicate_argument()
+    test_predicate_argument()

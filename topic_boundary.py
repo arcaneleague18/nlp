@@ -3,6 +3,10 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 
+"""
+Detect topic boundaries in a paragraph using clustering over sentence embeddings.
+"""
+
 def split_sentences(text):
     """
     Splits text into sentences using punctuation marks.
@@ -11,6 +15,7 @@ def split_sentences(text):
     Returns:
         list: List of sentences.
     """
+    # Use regex to split on punctuation followed by a space
     return [s for s in re.split(r'(?<=[.!?])\s+', text.strip()) if s]
 
 def detect_topic_boundaries(paragraph, n_clusters=3):
@@ -64,5 +69,6 @@ def test_split_sentences():
     assert sents == ['NLP is fun!', 'Is it?', 'Yes.']
     print("split_sentences passed.")
 
-test_split_sentences()
-detect_topic_boundaries(paragraph, n_clusters=3)
+if __name__ == "__main__":
+    test_split_sentences()
+    detect_topic_boundaries(paragraph, n_clusters=3)

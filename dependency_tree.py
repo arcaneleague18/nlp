@@ -19,8 +19,16 @@ grammar = DependencyGrammar.fromstring("""
 
 parser = ProjectiveDependencyParser(grammar)
 
-sentence = input("Enter sentence: ").lower().split()
-
-# Parse and pretty print all possible dependency trees
-for tree in parser.parse(sentence):
-    tree.pretty_print()
+try:
+    sentence = input("Enter sentence: ").lower().split()
+    found = False
+    for tree in parser.parse(sentence):
+        found = True
+        tree.pretty_print()
+    if not found:
+        print("No dependency parse found for the input sentence.")
+except (EOFError, KeyboardInterrupt):
+    print("\nInput cancelled.")
+except LookupError as e:
+    print("NLTK resource not found. Please ensure resources are downloaded.")
+    print(e)
