@@ -30,18 +30,24 @@ def porter_stem(word):
     return word
 
 # Example usage
-words = ["running", "happiness", "studies", "agreed", "quickly", "pocesses"]
-for w in words:
-    print(w, "->", porter_stem(w))
-
-def test_porter_stem():
-    assert porter_stem("running") == "runn"
-    assert porter_stem("happiness") == "happi"
-    assert porter_stem("studies") == "stud"
-    assert porter_stem("agreed") == "agre"
-    assert porter_stem("quickly") == "quick"
-    assert porter_stem("pocesses") == "pocess"  # Added test for typo word
-    print("All porter_stem tests passed.")
-
+words = ["running", "happiness", "studies", "agreed", "quickly", "processes"]
 if __name__ == "__main__":
+    print("Porter Stemmer Example Results:")
+    for w in words:
+        print(f"{w} -> {porter_stem(w)}")
+
+    def test_porter_stem():
+        """Test cases for porter_stem function."""
+        assert porter_stem("running") == "runn"
+        assert porter_stem("happiness") == "happi"
+        assert porter_stem("studies") == "stud"
+        assert porter_stem("agreed") == "agre"
+        assert porter_stem("quickly") == "quick"
+        assert porter_stem("processes") == "process"
+        # Lowercase test
+        assert porter_stem("Happiness") == "happi"
+        # Suffix not present
+        assert porter_stem("cat") == "cat"
+        print("All porter_stem tests passed.")
+
     test_porter_stem()
