@@ -1,18 +1,40 @@
 # tokenization.py - Simple sentence and word tokenizer
 import re
 
+def tokenize_sentences(text):
+    """
+    Splits text into sentences using punctuation marks.
+    Args:
+        text (str): Input text.
+    Returns:
+        list: List of sentences.
+    """
+    sentences = re.split(r'[.!?]+', text)
+    return [s.strip() for s in sentences if s.strip()]
+
+def tokenize_words(text):
+    """
+    Splits text into words and punctuation as separate tokens.
+    Args:
+        text (str): Input text.
+    Returns:
+        list: List of tokens.
+    """
+    tokens = re.findall(r'\w+|[^\w\s]', text)
+    return tokens
+
 text = "Vis is an AI Engineer. He is a very smart intellectual. He loves working on complex problems and solving them."
 
-# Split sentences on punctuation
-sentences = re.split(r'[.!?]+', text)
-sentences = [s.strip() for s in sentences if s.strip()]
+if __name__ == "__main__":
+    sentences = tokenize_sentences(text)
+    tokens = tokenize_words(text)
+    print("Tokens:", tokens)
+    print("\nSentences:")
+    print(sentences)
 
-# Tokenize words and punctuation
-# \w+ = word, [^\w\s] = punctuation
-# This regex splits words and keeps punctuation as separate tokens
-# Example: ["Vis", "is", "an", "AI", "Engineer", ".", ...]
-tokens = re.findall(r'\w+|[^\w\s]', text)
-print("Tokens:", tokens)
-
-print("\nSentences:")
-print(sentences)
+    def test_tokenization():
+        """Basic test for tokenization functions."""
+        assert tokenize_sentences("NLP is fun! Is it? Yes.") == ['NLP is fun', 'Is it', 'Yes']
+        assert tokenize_words("Hello, world!") == ['Hello', ',', 'world', '!']
+        print("Tokenization tests passed.")
+    test_tokenization()
