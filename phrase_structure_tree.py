@@ -21,6 +21,7 @@ grammar = CFG.fromstring("""
 parser = nltk.ChartParser(grammar)
 
 try:
+    # Prompt user for sentence and parse
     text = input("Enter sentence: ").lower()
     sentence = text.split()
     # Parse and pretty print all possible trees
