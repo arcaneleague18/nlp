@@ -38,16 +38,16 @@ if __name__ == "__main__":
 
     def test_porter_stem():
         """Test cases for porter_stem function."""
-        assert porter_stem("running") == "runn"
-        assert porter_stem("happiness") == "happi"
-        assert porter_stem("studies") == "stud"
-        assert porter_stem("agreed") == "agre"
-        assert porter_stem("quickly") == "quick"
-        assert porter_stem("processes") == "process"
+        assert porter_stem("running") == "runn", f"Failed for 'running'"
+        assert porter_stem("happiness") == "happi", f"Failed for 'happiness'"
+        assert porter_stem("studies") == "stud", f"Failed for 'studies'"
+        assert porter_stem("agreed") == "agre", f"Failed for 'agreed'"
+        assert porter_stem("quickly") == "quick", f"Failed for 'quickly'"
+        assert porter_stem("processes") == "process", f"Failed for 'processes'"
         # Lowercase test
-        assert porter_stem("Happiness") == "happi"
+        assert porter_stem("Happiness") == "happi", f"Failed for 'Happiness'"
         # Suffix not present
-        assert porter_stem("cat") == "cat"
+        assert porter_stem("cat") == "cat", f"Failed for 'cat'"
         print("All porter_stem tests passed.")
 
     test_porter_stem()

@@ -58,8 +58,8 @@ if __name__ == "__main__":
 
     def test_supervised_wsd():
         """Basic test cases for supervised WSD."""
-        assert predict_wsd("He deposited money in the bank", vectorizer, model) == "finance"
-        assert predict_wsd("He sat on the river bank", vectorizer, model) == "river"
+        assert predict_wsd("He deposited money in the bank", vectorizer, model) == "finance", "Test finance failed"
+        assert predict_wsd("He sat on the river bank", vectorizer, model) == "river", "Test river failed"
         print("Supervised WSD test cases passed.")
 
     test_supervised_wsd()
