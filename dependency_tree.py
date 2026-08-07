@@ -20,6 +20,7 @@ grammar = DependencyGrammar.fromstring("""
 parser = ProjectiveDependencyParser(grammar)
 
 try:
+    # Prompt user for a sentence
     sentence = input("Enter sentence: ").lower().split()
     found = False
     for tree in parser.parse(sentence):
