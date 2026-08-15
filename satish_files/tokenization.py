@@ -3,19 +3,6 @@
 Splits a text into tokens (words) by whitespace. 
 Adds a simple test for correctness.
 """
-text = "Natural Language Processing is interesting"
-tokens = []
-word = ""
-for ch in text:
-    if ch != " ":
-        word += ch
-    else:
-        tokens.append(word)
-        word = ""
-tokens.append(word)
-
-print("Original Text:", text)
-print("Tokens:", tokens)
 
 def simple_tokenize(text):
     """
@@ -37,6 +24,11 @@ def simple_tokenize(text):
     return tokens
 
 if __name__ == "__main__":
+    text = "Natural Language Processing is interesting"
+    tokens = simple_tokenize(text)
+    print("Original Text:", text)
+    print("Tokens:", tokens)
+
     def test_simple_tokenize():
         assert simple_tokenize("NLP is fun") == ["NLP", "is", "fun"]
         assert simple_tokenize("Test") == ["Test"]

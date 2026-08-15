@@ -2,6 +2,10 @@ import nltk
 from nltk import CFG
 from nltk.parse import ChartParser
 
+"""
+Phrase Structure Tree demo using a simple CFG and NLTK ChartParser.
+Prints the phrase structure tree for the example sentence.
+"""
 
 grammar = CFG.fromstring("""
 S -> NP VP

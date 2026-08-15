@@ -2,6 +2,9 @@ import nltk
 from nltk.grammar import DependencyGrammar
 from nltk.parse import ProjectiveDependencyParser
 
+"""
+Dependency Parsing demo using a small hand-crafted grammar and NLTK's ProjectiveDependencyParser.
+"""
 # Updated dependency grammar
 grammar = DependencyGrammar.fromstring("""
 'hit' -> 'boy' | 'ball' | 'with'
