@@ -30,7 +30,6 @@ def stem(word):
 
     return word
 
-
 words = ["playing", "connected", "relational", "studies"]
 
 if __name__ == "__main__":
@@ -47,6 +46,7 @@ if __name__ == "__main__":
         assert stem("relational") == "relate"
         assert stem("studies") == "stud"
         assert stem("agreed") == "agre"
+        # The simplified stemmer does not handle 'ness' suffix. The stem of "happiness" remains "happiness".
         assert stem("happiness") == "happiness"  # no rule matches
         assert stem("cats") == "cat"
         print("All stem tests passed.")

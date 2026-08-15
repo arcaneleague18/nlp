@@ -2,6 +2,10 @@ import nltk
 from nltk import CFG
 from nltk.parse import ShiftReduceParser
 
+"""
+SR Parser demo using a simple CFG and NLTK's ShiftReduceParser.
+Prints the final parse tree for the example sentence.
+"""
 # Define grammar
 g = CFG.fromstring("""
 S  -> NP VP
