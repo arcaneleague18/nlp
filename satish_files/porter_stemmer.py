@@ -8,6 +8,7 @@ def stem(word):
         str: Stemmed word.
     """
     orig = word  # for testing
+    word = word.lower()
     if word.endswith("sses"):
         word = word[:-2]
     elif word.endswith("ies"):
@@ -32,23 +33,21 @@ def stem(word):
 
 words = ["playing", "connected", "relational", "studies"]
 
+def test_stem():
+    """Basic tests for stem function."""
+    assert stem("playing") == "play"
+    assert stem("connected") == "connect"
+    assert stem("relational") == "relate"
+    assert stem("studies") == "stud"
+    assert stem("agreed") == "agre"
+    # The simplified stemmer does not handle 'ness' suffix. The stem of "happiness" remains "happiness".
+    assert stem("happiness") == "happiness"  # no rule matches
+    assert stem("cats") == "cat"
+    print("All stem tests passed.")
+
 if __name__ == "__main__":
     word = input("Enter a word: ")
     print(word, "->", stem(word))
-
     for w in words:
         print(w, "->", stem(w))
-
-    def test_stem():
-        """Basic tests for stem function."""
-        assert stem("playing") == "play"
-        assert stem("connected") == "connect"
-        assert stem("relational") == "relate"
-        assert stem("studies") == "stud"
-        assert stem("agreed") == "agre"
-        # The simplified stemmer does not handle 'ness' suffix. The stem of "happiness" remains "happiness".
-        assert stem("happiness") == "happiness"  # no rule matches
-        assert stem("cats") == "cat"
-        print("All stem tests passed.")
-
     test_stem()
