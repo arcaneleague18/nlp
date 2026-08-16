@@ -8,6 +8,7 @@ def stem(word):
         str: Stemmed word.
     """
     orig = word  # for testing
+    word = word.lower()  # normalization for consistent stemming
     if word.endswith("sses"):
         word = word[:-2]
     elif word.endswith("ies"):
@@ -32,23 +33,21 @@ def stem(word):
 
 words = ["playing", "connected", "relational", "studies"]
 
-if __name__ == "__main__":
-    word = input("Enter a word: ")
-    print(word, "->", stem(word))
+def test_stem():
+    """Basic tests for stem function."""
+    assert stem("playing") == "play", "Failed for 'playing'"
+    assert stem("connected") == "connect", "Failed for 'connected'"
+    assert stem("relational") == "relate", "Failed for 'relational'"
+    assert stem("studies") == "stud", "Failed for 'studies'"
+    assert stem("agreed") == "agre", "Failed for 'agreed'"
+    # The simplified stemmer does not handle 'ness' suffix. The stem of "happiness" remains "happiness".
+    assert stem("happiness") == "happiness", "Failed for 'happiness' (expected no change)"  # no rule matches
+    assert stem("cats") == "cat", "Failed for 'cats'"
+    print("All stem tests passed.")
 
+if __name__ == "__main__":
+    word = input("Enter a word: ").strip()
+    print(word, "->", stem(word))
     for w in words:
         print(w, "->", stem(w))
-
-    def test_stem():
-        """Basic tests for stem function."""
-        assert stem("playing") == "play"
-        assert stem("connected") == "connect"
-        assert stem("relational") == "relate"
-        assert stem("studies") == "stud"
-        assert stem("agreed") == "agre"
-        # The simplified stemmer does not handle 'ness' suffix. The stem of "happiness" remains "happiness".
-        assert stem("happiness") == "happiness"  # no rule matches
-        assert stem("cats") == "cat"
-        print("All stem tests passed.")
-
     test_stem()

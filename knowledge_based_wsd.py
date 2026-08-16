@@ -31,10 +31,10 @@ knowledge_base = {
     }
 }
 
-# Test
 sentence = "I went to the bank to deposit money"
 word = "bank"
-sense = simple_wsd(sentence, word, knowledge_base)
 
-print("Sentence:", sentence)
-print("Predicted Sense:", sense)
+if __name__ == "__main__":
+    sense = simple_wsd(sentence, word, knowledge_base)
+    print("Sentence:", sentence)
+    print("Predicted Sense:", sense)
