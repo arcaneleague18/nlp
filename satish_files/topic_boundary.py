@@ -10,14 +10,19 @@ Splits topics when similarity is low.
 model = LogisticRegression().fit([[0.9],[0.2]], [0,1])
 
 def split_topics(text):
+    """
+    Splits text into topics based on cosine similarity between adjacent sentence vectors.
+    Prints new topic when the model predicts a boundary.
+    Args:
+        text (str): Input paragraph.
+    """
     s = text.split(". ")
     # Remove any empty strings (from trailing periods)
     s = [sent for sent in s if sent.strip()]
-    v = CountVectorizer().fit_transform(s)
-
-    if len(s) == 0:
+    if not s:
         print("No sentences found.")
         return
+    v = CountVectorizer().fit_transform(s)
     print(s[0])
     prev_topic = False   # control multiple splits
 
@@ -34,7 +39,14 @@ def split_topics(text):
 
         print(s[i])
 
+def test_split_topics():
+    """Basic tests for split_topics function with example input."""
+    print("\nTest: split_topics on demo input:")
+    text = "Sentence one. Sentence two. Topic change. Another topic."
+    split_topics(text)
+
 # Input
 if __name__ == "__main__":
     text = input("Enter text: ")
     split_topics(text)
+    test_split_topics()

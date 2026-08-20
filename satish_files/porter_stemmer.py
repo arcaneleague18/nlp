@@ -1,13 +1,15 @@
 def stem(word):
     """
-    Very simplified stemmer function that removes common English suffixes
-    to obtain the word stem/root. Implements a few basic Porter-like rules for demo.
+    Very simplified stemmer function that removes common English suffixes to obtain the word stem/root.
+    Implements a few basic Porter-like rules for demo.
     Args:
         word (str): Input word to stem.
     Returns:
         str: Stemmed word.
     """
     orig = word  # for testing
+    # Lowercase for uniform processing
+    word = word.lower()
     if word.endswith("sses"):
         word = word[:-2]
     elif word.endswith("ies"):

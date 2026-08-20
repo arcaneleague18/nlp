@@ -1,6 +1,6 @@
 # satish_files/tokenization.py - Simple tokenization demo
 """
-Splits a text into tokens (words) by whitespace. 
+Splits a text into tokens (words) by whitespace.
 Adds a simple test for correctness.
 """
 
@@ -20,7 +20,8 @@ def simple_tokenize(text):
         else:
             tokens.append(word)
             word = ""
-    tokens.append(word)
+    if word != "":  # Avoid appending empty string if text ends with whitespace
+        tokens.append(word)
     return tokens
 
 if __name__ == "__main__":
@@ -30,6 +31,7 @@ if __name__ == "__main__":
     print("Tokens:", tokens)
 
     def test_simple_tokenize():
+        """Basic tests for simple_tokenize function."""
         assert simple_tokenize("NLP is fun") == ["NLP", "is", "fun"]
         assert simple_tokenize("Test") == ["Test"]
         assert simple_tokenize("hello world") == ["hello", "world"]
