@@ -8,6 +8,8 @@ def stem(word):
         str: Stemmed word.
     """
     orig = word  # for testing
+    # Lowercase for consistency (Porter is case insensitive)
+    word = word.lower()
     if word.endswith("sses"):
         word = word[:-2]
     elif word.endswith("ies"):
@@ -25,7 +27,7 @@ def stem(word):
     elif word.endswith("tional"):
         word = word[:-6] + "tion"
 
-    if word.endswith("e"):
+    if word.endswith("e") and len(word) > 1:
         word = word[:-1]
 
     return word

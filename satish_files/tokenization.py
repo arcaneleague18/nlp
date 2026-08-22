@@ -18,9 +18,11 @@ def simple_tokenize(text):
         if ch != " ":
             word += ch
         else:
-            tokens.append(word)
+            if word:
+                tokens.append(word)
             word = ""
-    tokens.append(word)
+    if word:
+        tokens.append(word)
     return tokens
 
 if __name__ == "__main__":
@@ -30,8 +32,12 @@ if __name__ == "__main__":
     print("Tokens:", tokens)
 
     def test_simple_tokenize():
+        """Unit tests for simple_tokenize function."""
         assert simple_tokenize("NLP is fun") == ["NLP", "is", "fun"]
         assert simple_tokenize("Test") == ["Test"]
         assert simple_tokenize("hello world") == ["hello", "world"]
+        assert simple_tokenize("") == []
+        assert simple_tokenize("   leading spaces") == ["leading", "spaces"]
+        assert simple_tokenize("trailing spaces   ") == ["trailing", "spaces"]
         print("Tokenization tests passed.")
     test_simple_tokenize()
