@@ -34,23 +34,25 @@ def stem(word):
 
 words = ["playing", "connected", "relational", "studies"]
 
-if __name__ == "__main__":
-    word = input("Enter a word: ")
-    print(word, "->", stem(word))
+def test_stem():
+    """Basic tests for stem function."""
+    assert stem("playing") == "play"
+    assert stem("connected") == "connect"
+    assert stem("relational") == "relate"
+    assert stem("studies") == "stud"
+    assert stem("agreed") == "agre"
+    # The simplified stemmer does not handle 'ness' suffix. The stem of "happiness" remains "happiness".
+    assert stem("happiness") == "happiness"  # no rule matches
+    assert stem("cats") == "cat"
+    print("All stem tests passed.")
 
+if __name__ == "__main__":
+    try:
+        word = input("Enter a word: ")
+    except (EOFError, KeyboardInterrupt):
+        print("Input cancelled.")
+        exit(0)
+    print(word, "->", stem(word))
     for w in words:
         print(w, "->", stem(w))
-
-    def test_stem():
-        """Basic tests for stem function."""
-        assert stem("playing") == "play"
-        assert stem("connected") == "connect"
-        assert stem("relational") == "relate"
-        assert stem("studies") == "stud"
-        assert stem("agreed") == "agre"
-        # The simplified stemmer does not handle 'ness' suffix. The stem of "happiness" remains "happiness".
-        assert stem("happiness") == "happiness"  # no rule matches
-        assert stem("cats") == "cat"
-        print("All stem tests passed.")
-
     test_stem()
