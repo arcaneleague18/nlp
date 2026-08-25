@@ -31,7 +31,7 @@ def porter_stem(word):
     return word
 
 # Example usage
-words = ["running", "happiness", "studies", "agreed", "quickly", "processes"]
+words = ["running", "happiness", "studies", "agreed", "quickly", "processes", "friendly", "agreement", "darkness"]
 if __name__ == "__main__":
     print("Porter Stemmer Example Results:")
     for w in words:
@@ -45,6 +45,9 @@ if __name__ == "__main__":
         assert porter_stem("agreed") == "agre", f"Failed for 'agreed'"
         assert porter_stem("quickly") == "quick", f"Failed for 'quickly'"
         assert porter_stem("processes") == "process", f"Failed for 'processes'"
+        assert porter_stem("friendly") == "friend", f"Failed for 'friendly'"
+        assert porter_stem("agreement") == "agree", f"Failed for 'agreement'"
+        assert porter_stem("darkness") == "dark", f"Failed for 'darkness'"
         # Lowercase test
         assert porter_stem("Happiness") == "happi", f"Failed for 'Happiness'"
         # Suffix not present
