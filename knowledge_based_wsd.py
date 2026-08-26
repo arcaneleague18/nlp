@@ -1,4 +1,5 @@
 """
+knowledge_based_wsd.py
 Simple knowledge-based Word Sense Disambiguation (WSD) demo.
 Given a knowledge base and a sentence, predicts sense of a target word based on maximum overlap.
 """
@@ -31,10 +32,9 @@ knowledge_base = {
     }
 }
 
-# Test
-sentence = "I went to the bank to deposit money"
-word = "bank"
-sense = simple_wsd(sentence, word, knowledge_base)
-
-print("Sentence:", sentence)
-print("Predicted Sense:", sense)
+if __name__ == "__main__":
+    sentence = "I went to the bank to deposit money"
+    word = "bank"
+    sense = simple_wsd(sentence, word, knowledge_base)
+    print("Sentence:", sentence)
+    print("Predicted Sense:", sense)

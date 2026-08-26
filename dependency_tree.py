@@ -1,12 +1,13 @@
+"""
+dependency_tree.py
+Dependency parser using a handcrafted grammar and NLTK's ProjectiveDependencyParser.
+Usage: Enter a sentence using words from the grammar (e.g., 'the dog chases the cat').
+"""
 import nltk
 from nltk.grammar import DependencyGrammar
 from nltk.parse import ProjectiveDependencyParser
 
-"""
-Dependency parser using a handcrafted grammar and NLTK's ProjectiveDependencyParser.
-Usage: Enter a sentence using words from the grammar (e.g., 'the dog chases the cat').
-"""
-
+# Define simple dependency grammar
 grammar = DependencyGrammar.fromstring("""
 'chases' -> 'dog' | 'cat' | 'boy' | 'girl'
 'sees' -> 'dog' | 'cat' | 'boy' | 'girl'

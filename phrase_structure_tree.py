@@ -1,12 +1,13 @@
-import nltk
-from nltk import CFG
-
 """
+phrase_structure_tree.py
 Phrase structure parser using NLTK's ChartParser.
 Requirements: nltk, and nltk.download('punkt') if not already downloaded.
 Usage: Enter a sentence matching the grammar. Example: 'the dog chased the cat'
 """
+import nltk
+from nltk import CFG
 
+# Define grammar for simple English sentences
 grammar = CFG.fromstring("""
   S -> NP VP
   NP -> Det N
