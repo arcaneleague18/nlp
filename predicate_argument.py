@@ -1,6 +1,9 @@
 # -------------------------------
-# Verb Lists
+# predicate_argument.py
+# Extracts predicate-argument structure from simple English sentences.
 # -------------------------------
+
+# Verb Lists
 verbs = [
     "see", "sees", "saw", "seeing",
     "chase", "chases", "chased", "chasing",
@@ -24,6 +27,7 @@ def get_base(word):
         str: Base form of the verb.
     """
     word = word.lower()
+    # Handle various suffixes to get base form
     if word.endswith("ing"):
         return word[:-3]
     elif word.endswith("ses"):   # must come before 'es'
@@ -84,20 +88,24 @@ def predicate_argument(sentence):
 # -------------------------------
 # Test Examples
 # -------------------------------
+def test_predicate_argument():
+    """
+    Test cases for predicate_argument function.
+    """
+    print("Testing predicate_argument:\n")
+    # Typical cases
+    predicate_argument("Cats eat fish")
+    predicate_argument("He was playing cricket yesterday")
+    predicate_argument("Birds are flying in the sky")
+    # Edge: no verb
+    predicate_argument("Just a phrase")
+    # Edge: only verb
+    predicate_argument("Eat")
+    print("Predicate argument tests complete.\n")
+
 if __name__ == "__main__":
     predicate_argument("Ram is eating an apple")
     predicate_argument("The boy played football")
     predicate_argument("She likes ice cream")
     predicate_argument("Birds fly")
-
-    def test_predicate_argument():
-        """
-        Test cases for predicate_argument function.
-        """
-        print("Testing predicate_argument:\n")
-        predicate_argument("Cats eat fish")
-        predicate_argument("He was playing cricket yesterday")
-        predicate_argument("Birds are flying in the sky")
-        print("Predicate argument tests complete.\n")
-
     test_predicate_argument()

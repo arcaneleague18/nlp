@@ -57,6 +57,10 @@ if __name__ == "__main__":
         assert porter_stem("Happiness") == "happi", f"Failed for 'Happiness'"
         # Suffix not present
         assert porter_stem("cat") == "cat", f"Failed for 'cat'"
+        # Edge: empty string
+        assert porter_stem("") == "", f"Failed for empty string"
+        # Edge: word with only suffix
+        assert porter_stem("ness") == ""  # suffix only
         print("All porter_stem tests passed.")
 
     test_porter_stem()

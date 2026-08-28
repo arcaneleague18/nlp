@@ -9,6 +9,7 @@ def tokenize_sentences(text):
     Returns:
         list: List of sentences without trailing punctuation.
     """
+    # Split on one or more sentence-ending punctuations
     sentences = re.split(r'[.!?]+', text)
     return [s.strip() for s in sentences if s.strip()]
 
@@ -20,6 +21,7 @@ def tokenize_words(text):
     Returns:
         list: List of tokens.
     """
+    # Extract words and punctuation as separate tokens
     tokens = re.findall(r'\w+|[^\w\s]', text)
     return tokens
 
@@ -37,7 +39,9 @@ def test_tokenization():
     assert tokenize_words("") == [], "Word tokenization failed for empty string"
     assert tokenize_words("Cats' tails.") == ['Cats', "'", 'tails', '.'], "Word tokenization failed for apostrophe"
     # Extra: punctuation sequence
-    assert tokenize_words("Wow!!! Cool...") == ['Wow', '!', '!', '!', 'Cool', '.', '.', '.']
+    assert tokenize_words("Wow!!! Cool...") == ['Wow', '!', '!', '!', 'Cool', '.', '.', '.'], "Word tokenization failed for repeated punctuation"
+    # Edge case: digits and symbols
+    assert tokenize_words("3.14 is pi!") == ['3', '.', '14', 'is', 'pi', '!'], "Word tokenization failed for digits and punctuation"
     print("Tokenization tests passed.")
 
 if __name__ == "__main__":
