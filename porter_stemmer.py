@@ -1,8 +1,13 @@
+"""
+porter_stemmer.py
+A very simplified implementation of the Porter Stemmer (not full).
+Removes common suffixes to get the stem/root of an English word.
+WARNING: This is a simplified demo and does not cover all Porter rules.
+"""
 def porter_stem(word):
     """
     Very simplified implementation of the Porter Stemmer (not full).
     Removes common suffixes to get the stem/root of an English word.
-    WARNING: This is a simplified demo and does not cover all Porter rules.
     Args:
         word (str): Input word to stem.
     Returns:
