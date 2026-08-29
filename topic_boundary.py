@@ -64,9 +64,19 @@ Chlorophyll absorbs sunlight for energy conversion.
 """
 
 def test_split_sentences():
+    """
+    Test split_sentences function on various punctuation and edge cases.
+    """
+    # Standard case
     text = "NLP is fun! Is it? Yes."
     sents = split_sentences(text)
     assert sents == ['NLP is fun!', 'Is it?', 'Yes.']
+    # Edge: no punctuation
+    assert split_sentences("No punctuation here") == ["No punctuation here"]
+    # Edge: empty string
+    assert split_sentences("") == []
+    # Edge: multiple spaces
+    assert split_sentences("A.  B!   C?") == ["A.", "B!", "C?"]
     print("split_sentences passed.")
 
 if __name__ == "__main__":

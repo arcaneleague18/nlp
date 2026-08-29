@@ -21,20 +21,28 @@ grammar = CFG.fromstring("""
 
 parser = nltk.ChartParser(grammar)
 
-try:
-    # Prompt user for sentence and parse
-    text = input("Enter sentence: ").lower()
-    sentence = text.split()
-    # Parse and pretty print all possible trees
-    found = False
-    for tree in parser.parse(sentence):
-        found = True
-        print(tree)
-        tree.pretty_print()
-    if not found:
-        print("No parse found for the input sentence.")
-except (EOFError, KeyboardInterrupt):
-    print("\nInput cancelled.")
-except LookupError as e:
-    print("NLTK resource not found. Did you run nltk.download('punkt')?")
-    print(e)
+def parse_and_print():
+    """
+    Prompts user for a sentence and parses it using the defined grammar.
+    Prints all possible parse trees.
+    """
+    try:
+        # Prompt user for sentence and parse
+        text = input("Enter sentence: ").lower()
+        sentence = text.split()
+        # Parse and pretty print all possible trees
+        found = False
+        for tree in parser.parse(sentence):
+            found = True
+            print(tree)
+            tree.pretty_print()
+        if not found:
+            print("No parse found for the input sentence.")
+    except (EOFError, KeyboardInterrupt):
+        print("\nInput cancelled.")
+    except LookupError as e:
+        print("NLTK resource not found. Did you run nltk.download('punkt')?")
+        print(e)
+
+if __name__ == "__main__":
+    parse_and_print()

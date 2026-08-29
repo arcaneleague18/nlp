@@ -20,17 +20,24 @@ grammar = DependencyGrammar.fromstring("""
 
 parser = ProjectiveDependencyParser(grammar)
 
-try:
-    # Prompt user for a sentence
-    sentence = input("Enter sentence: ").lower().split()
-    found = False
-    for tree in parser.parse(sentence):
-        found = True
-        tree.pretty_print()
-    if not found:
-        print("No dependency parse found for the input sentence.")
-except (EOFError, KeyboardInterrupt):
-    print("\nInput cancelled.")
-except LookupError as e:
-    print("NLTK resource not found. Please ensure resources are downloaded.")
-    print(e)
+def parse_and_print():
+    """
+    Prompts user for a sentence and parses it using the defined dependency grammar.
+    """
+    try:
+        # Prompt user for a sentence
+        sentence = input("Enter sentence: ").lower().split()
+        found = False
+        for tree in parser.parse(sentence):
+            found = True
+            tree.pretty_print()
+        if not found:
+            print("No dependency parse found for the input sentence.")
+    except (EOFError, KeyboardInterrupt):
+        print("\nInput cancelled.")
+    except LookupError as e:
+        print("NLTK resource not found. Please ensure resources are downloaded.")
+        print(e)
+
+if __name__ == "__main__":
+    parse_and_print()
