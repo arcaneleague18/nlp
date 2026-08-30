@@ -13,6 +13,8 @@ def porter_stem(word):
     Returns:
         str: Stemmed word.
     """
+    if not isinstance(word, str):
+        return ""
     word = word.lower()
     # Step 1: plural handling
     if word.endswith("sses"):
@@ -61,6 +63,8 @@ if __name__ == "__main__":
         assert porter_stem("") == "", f"Failed for empty string"
         # Edge: word with only suffix
         assert porter_stem("ness") == ""  # suffix only
+        # Edge: non-string input
+        assert porter_stem(None) == "", f"Failed for None input"
         print("All porter_stem tests passed.")
 
     test_porter_stem()
