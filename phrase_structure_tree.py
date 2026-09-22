@@ -17,9 +17,11 @@ grammar = CFG.fromstring("""
   N -> 'dog' | 'cat' | 'park'
   V -> 'chased' | 'saw'
   P -> 'in' | 'with'
-""")
+"""
+)
 
 parser = nltk.ChartParser(grammar)
+
 
 def parse_and_print():
     """
@@ -45,4 +47,5 @@ def parse_and_print():
         print(e)
 
 if __name__ == "__main__":
+    # Run phrase structure parse demo
     parse_and_print()

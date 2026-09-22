@@ -13,9 +13,11 @@ def simple_wsd(sentence, target_word, knowledge_base):
     Returns:
         str: Best sense label or None if no overlap found.
     """
+    # Tokenize sentence and lower case for comparison
     context = set(sentence.lower().split())
     best_sense = None
     max_overlap = 0
+    # Iterate over senses and definitions
     for sense, definition in knowledge_base[target_word].items():
         signature = set(definition.lower().split())
         overlap = len(context.intersection(signature))
@@ -33,6 +35,7 @@ knowledge_base = {
 }
 
 if __name__ == "__main__":
+    # Demo usage
     sentence = "I went to the bank to deposit money"
     word = "bank"
     sense = simple_wsd(sentence, word, knowledge_base)

@@ -38,12 +38,16 @@ def porter_stem(word):
 # Example usage
 words = ["running", "happiness", "studies", "agreed", "quickly", "processes", "friendly", "agreement", "darkness"]
 if __name__ == "__main__":
+    # Demo usage
     print("Porter Stemmer Example Results:")
     for w in words:
         print(f"{w} -> {porter_stem(w)}")
 
     def test_porter_stem():
-        """Test cases for porter_stem function."""
+        """
+        Test cases for porter_stem function.
+        """
+        # Standard and edge cases
         assert porter_stem("running") == "runn", f"Failed for 'running'"
         assert porter_stem("happiness") == "happi", f"Failed for 'happiness'"
         assert porter_stem("studies") == "stud", f"Failed for 'studies'"
