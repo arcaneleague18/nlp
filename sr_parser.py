@@ -1,3 +1,4 @@
+# Simple shift-reduce parser example
 # Grammar
 productions = {
     "S": [["S", "+", "S"], ["id"]]
@@ -45,9 +46,11 @@ def shift_reduce_parse(input_string):
 
 if __name__ == "__main__":
     # Example parse
+    print("Example: ['id', '+', 'id']")
     result = shift_reduce_parse(["id", "+", "id"])
 
     def test_shift_reduce():
+        print("\nTesting shift-reduce parser...")
         assert shift_reduce_parse(["id"]) == True
         assert shift_reduce_parse(["id", "+", "id"]) == True
         assert shift_reduce_parse(["id", "+", "+"]) == False

@@ -14,6 +14,7 @@ def simple_tokenize(text):
     """
     tokens = []
     word = ""
+    # Iterate over each character, building tokens separated by spaces
     for ch in text:
         if ch != " ":
             word += ch
@@ -37,7 +38,13 @@ if __name__ == "__main__":
         assert simple_tokenize("Test") == ["Test"]
         assert simple_tokenize("hello world") == ["hello", "world"]
         assert simple_tokenize("") == []
-        assert simple_tokenize("   leading spaces") == ["leading", "spaces"]
-        assert simple_tokenize("trailing spaces   ") == ["trailing", "spaces"]
+        assert simple_tokenize("   leading spaces") == ["leading", "spaces"], "Failed: leading spaces"
+        assert simple_tokenize("trailing spaces   ") == ["trailing", "spaces"], "Failed: trailing spaces"
+        # Test with multiple consecutive spaces
+        assert simple_tokenize("a   b  c") == ["a", "b", "c"], "Failed: multiple spaces"
+        # Test with only spaces
+        assert simple_tokenize("   ") == [], "Failed: only spaces"
+        # Test with punctuation attached to words
+        assert simple_tokenize("Hello, world!") == ["Hello,", "world!"], "Failed: punctuation attached"
         print("Tokenization tests passed.")
     test_simple_tokenize()

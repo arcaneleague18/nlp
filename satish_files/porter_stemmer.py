@@ -48,17 +48,27 @@ if __name__ == "__main__":
         print(w, "->", stem(w))
 
     def test_stem():
-        """Basic tests for stem function."""
-        assert stem("playing") == "play"
-        assert stem("connected") == "connect"
-        assert stem("relational") == "relate"
-        assert stem("studies") == "stud"
-        assert stem("agreed") == "agre"
-        assert stem("happiness") == "happi"  # Now handled
-        assert stem("cats") == "cat"
-        assert stem("agreement") == "agree"
-        assert stem("processes") == "process"
-        assert stem("likely") == "like"
+        """Basic tests for stem function, including edge cases."""
+        assert stem("playing") == "play", "Failed for 'playing'"
+        assert stem("connected") == "connect", "Failed for 'connected'"
+        assert stem("relational") == "relate", "Failed for 'relational'"
+        assert stem("studies") == "stud", "Failed for 'studies'"
+        assert stem("agreed") == "agre", "Failed for 'agreed'"
+        assert stem("happiness") == "happi", "Failed for 'happiness'"
+        assert stem("cats") == "cat", "Failed for 'cats'"
+        assert stem("agreement") == "agree", "Failed for 'agreement'"
+        assert stem("processes") == "process", "Failed for 'processes'"
+        assert stem("likely") == "like", "Failed for 'likely'"
+        # Edge: already stemmed
+        assert stem("cat") == "cat", "Failed for 'cat'"
+        # Edge: empty string
+        assert stem("") == "", "Failed for empty string"
+        # Edge: short word with suffix
+        assert stem("ed") == "", "Failed for 'ed'"
+        # Edge: only suffix
+        assert stem("ness") == "", "Failed for 'ness'"
+        # Edge: uppercase
+        assert stem("Happiness") == "happi", "Failed for 'Happiness'"
         print("All stem tests passed.")
 
     test_stem()
