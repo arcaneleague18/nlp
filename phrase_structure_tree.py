@@ -8,6 +8,7 @@ import nltk
 from nltk import CFG
 
 # Define grammar for simple English sentences
+# S = sentence, NP = noun phrase, VP = verb phrase, PP = prepositional phrase
 grammar = CFG.fromstring("""
   S -> NP VP
   NP -> Det N
